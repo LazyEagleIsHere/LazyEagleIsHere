@@ -1,0 +1,19 @@
+hi = int(input())
+kiu = []
+while len(kiu) != hi:
+  strx = input()
+  psn = int(strx[3:5])
+  ascii_sum = int(strx[5:9])
+  kiux = list(strx[9:])
+  ascii_sumx = 0
+  for var in kiux:
+    ascii_sumx += ord(var)
+  if ascii_sum == ascii_sumx:
+    kiu.append(["".join(kiux), psn])
+sorted_mes = []
+for index in range(hi):
+  index += 1
+  for var in kiu:
+    if index == var[1]:
+      sorted_mes.append(var[0])
+print("".join(sorted_mes))
