@@ -1,0 +1,16 @@
+def counting(strx, target):
+  target = list(target)
+  counts = 0
+  strx = list(strx)
+  target_len = len(target)
+  for index in range(len(strx)):
+    n = strx[index:(index+target_len)]
+    if n == target:
+      counts += 1
+
+  return counts
+  
+    
+search_str = input()
+target_str = input()
+print(counting(search_str, target_str))
