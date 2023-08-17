@@ -1,0 +1,14 @@
+val = int(input())
+bill_amt = int(input())
+payment = 0
+for _ in range(bill_amt):
+  paymentx = int(input())
+  if val <= 0:
+    val += 250
+    payment += 250
+  val -= paymentx
+if val <= 0:
+  val += 250
+  payment += 250
+print("$" + str(payment))
+
