@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+using namespace std;
+string reverseString(const string& str) {
+  string reversed = str;
+  reverse(reversed.begin(), reversed.end());
+  return reversed;
+}
+
+int main() {
+  string a;
+  getline(cin, a);
+  string txt = reverseString(a);
+  vector<string> splitStrings;
+  size_t pos = 0;
+  while ((pos = txt.find("3pm.", pos)) != string::npos) {
+    splitStrings.push_back(txt.substr(0, pos));
+    txt.erase(0, pos + 4);
+  }
+  splitStrings.push_back(txt);
+  string result = "";
+  for (const auto& str : splitStrings) {
+    result += str;
+  }
+  cout << result << ".mp3" << std::endl;
+  return 0;
+}
