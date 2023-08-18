@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+  try {
+    int n;
+    cin >> n;
+    vector<pair<string, int>> records;
+    for (int i = 0; i < n; i++) {
+      string name;
+      cin.ignore();
+      getline(cin, name);
+      int score;
+      cin >> score;
+      records.emplace_back(name, score);
+    }
+    sort(records.begin(), records.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
+      if (a.second != b.second)
+        return a.second > b.second;
+      return a.first < b.first;
+    });
+    for (const auto& record : records) {
+      cout << record.first << " " << record.second << endl;
+    }
+  } catch (const exception& h) {
+    cout << h.what() << endl;
+  }
+
+  return 0;
+}
