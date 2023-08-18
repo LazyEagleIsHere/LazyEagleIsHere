@@ -1,0 +1,26 @@
+def kadane(v):
+  if v == -1:
+    return 0
+  else:
+    if not mdmb[v]:
+      mdm[v] = max(kadane(v - 1) + diamonds[v], diamonds[v])
+      mdmb[v] = True
+  return mdm[v]
+
+N = int(input())
+diamonds = list(map(int, input().split()))
+sumV = sum(diamonds)
+maxV = 0
+mdm = [0] * N 
+mdmb = [False] * N 
+for i in range(N):
+  if kadane(i) > maxV:
+    maxV = kadane(i)
+diamonds = [-d for d in diamonds]
+mdm = [0] * N 
+mdmb = [False] * N
+minV = 0
+for i in range(N):
+  if kadane(i) > minV:
+    minV = kadane(i)
+print(max(maxV, sumV + minV))
