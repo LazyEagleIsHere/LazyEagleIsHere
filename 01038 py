@@ -1,0 +1,30 @@
+N = int(input())
+R = int(input())
+global nodes
+nodes = []
+tra = []
+while True:
+  try:
+    a, b = map(int, input().split())
+    nodes.append([a, b])
+  except:
+    break
+
+def search(base):
+  tra.append(str(base))
+  nd = [var for var in nodes if base in var]
+  for var in nd:
+    nodes.remove(var)
+  if len(nd) > 0:
+    arr = []
+    for var in nd:
+      if var[0] == base:
+        arr.append(var[1])
+      else:
+        arr.append(var[0])
+    arr.sort()
+    for var in arr:
+      search(var)
+
+search(R)
+print(" ".join(tra))
