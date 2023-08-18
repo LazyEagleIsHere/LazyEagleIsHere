@@ -1,0 +1,44 @@
+#include <iostream>
+#include <unordered_map>
+#include <string>
+using namespace std;
+class Solution {
+public:
+  string fractionToDecimal(int numerator, int denominator) {
+    string result;
+    if (numerator == 0) {
+      return "0";
+    }
+    if (numerator < 0 ^ denominator < 0) {
+      result += "-";
+    }
+    long long num = abs(static_cast<long long>(numerator));
+    long long den = abs(static_cast<long long>(denominator));
+    result += to_string(num / den);
+    long long remainder = num % den;
+    if (remainder == 0) {
+      return result;
+    }
+    result += ".";
+    unordered_map<long long, int> remainders;
+    while (remainder != 0) {
+      if (remainders.find(remainder) != remainders.end()) {
+        result.insert(remainders[remainder], "[");
+        result += "]";
+        break;
+      }
+      remainders[remainder] = result.size();
+      remainder *= 10;
+      result += to_string(remainder / den);
+      remainder %= den;
+    }
+    return result;
+  }
+};
+
+int main() {
+  int up, down;
+  cin >> up >> down;
+  cout << Solution().fractionToDecimal(up, down) << endl;
+  return 0;
+}
