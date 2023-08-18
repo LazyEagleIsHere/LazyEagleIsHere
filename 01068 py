@@ -1,0 +1,10 @@
+import math
+N = int(input())
+a = [[0] * N for _ in range(2)]
+p = []
+for i in range(N):
+  a[0][i], a[1][i] = map(int, input().split())
+  p.append(((a[0][i] * a[0][i]) + (a[1][i] * a[1][i]), i))
+p.sort()
+for i in range(N):
+  print(a[0][p[i][1]], a[1][p[i][1]])
