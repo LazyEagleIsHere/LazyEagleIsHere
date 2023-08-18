@@ -1,0 +1,8 @@
+from math import ceil
+kiu1, kiu2, kiu3 = map(float, input().split())
+kiu4 = kiu1
+for _ in range(int(kiu3)):
+  kiu4 *= 100 - kiu2
+  kiu4 = ceil(kiu4)
+  kiu4 /= 100
+print("%.2f"%kiu4)
