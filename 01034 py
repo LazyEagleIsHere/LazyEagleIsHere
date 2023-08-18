@@ -1,0 +1,6 @@
+hi = int(input())
+for _ in range(hi):
+  calc = [str(x) for x in input().split()]
+  kiu = "".join(calc)
+  elvin = kiu.replace("^","**")
+  print(eval(elvin))
