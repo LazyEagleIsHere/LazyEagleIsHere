@@ -1,0 +1,18 @@
+import string, re
+kiu1, kiu2 = map(str, input().split())
+kiu3 = kiu1.translate(str.maketrans('', '', string.punctuation))
+kiu4 = kiu2.translate(str.maketrans('', '', string.punctuation))
+kiu5 = r'[0-9]'
+kiu6 = re.sub(kiu5, '', kiu3)
+kiu7 = re.sub(kiu5, '', kiu4)
+kiu8 = kiu6.lower()
+kiu9 = kiu7.lower()
+if kiu8 > kiu9:
+  kiu10 = [kiu1, "is greater than", kiu2]
+  print(" ".join(kiu10))
+elif kiu8 < kiu9:
+  kiu10 = [kiu1, "is less than", kiu2]
+  print(" ".join(kiu10))
+else:
+  kiu10 = [kiu1, "is equal to", kiu2]
+  print(" ".join(kiu10))
