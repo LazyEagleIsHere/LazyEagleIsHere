@@ -1,0 +1,13 @@
+def max_subarray_sum(arr):
+  try:
+    max_so_far = 0
+    max_ending_here = 0
+    for num in arr:
+      max_ending_here = max(max_ending_here + num, 0)
+      max_so_far = max(max_so_far, max_ending_here)
+    return max_so_far
+  except Exception as e:
+    print(e)
+N = int(input())
+listx = [int(x) for x in input().split()]
+print(max_subarray_sum(listx))
