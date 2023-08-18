@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+vector<string> solve(vector<string> xs) {
+    sort(xs.begin(), xs.end());
+    vector<vector<string>> grp;
+    for (const auto& x : xs) {
+      if (grp.empty() || grp.back().front() != x) {
+        grp.push_back({x});
+      }else {
+        grp.back().push_back(x);
+      }
+    }
+    vector<string> result;
+    int mode = 0;
+    for (const auto& g : grp) {
+      if (g.size() > mode) {
+        mode = g.size();
+      }
+    }
+    for (const auto& g : grp) {
+      if (g.size() == mode) {
+        result.push_back(g.front());
+      }
+    }
+    return result;
+}
+int main() {
+    vector<string> xs;
+    string line;
+    while (getline(cin, line)) {
+      xs.push_back(line);
+    }
+    vector<string> result = solve(vector<string>(xs.begin() + 1, xs.end()));
+    for (const auto& r : result) {
+      cout << r << endl;
+    }
+  return 0;
+}
