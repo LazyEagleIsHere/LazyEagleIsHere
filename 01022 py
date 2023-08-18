@@ -1,0 +1,12 @@
+try:
+  n = int(input())
+  records = []
+  for i in range(n):
+    name = input().strip()
+    score = int(input())
+    records.append((name, score))
+  sorted_records = sorted(records, key=lambda x: (-x[1], x[0]))
+  for name, score in sorted_records:
+    print(name, score)
+except Exception as h:
+  print(h)
