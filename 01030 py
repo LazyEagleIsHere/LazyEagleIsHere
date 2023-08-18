@@ -1,0 +1,13 @@
+N = int(input())
+humans = []
+for index in range(N):
+  index += 1
+  humans.append(index)
+died = []
+while len(humans) > 1:
+  died.append(str(humans[1]))
+  humans.remove(humans[1])
+  humans.append(humans[0])
+  humans.remove(humans[0])
+print(" ".join(died))
+print(str(humans[0]))
