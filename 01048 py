@@ -1,0 +1,6 @@
+import itertools
+stuff = list(input())
+stuff.sort()
+L = int(input())
+for subset in itertools.combinations(stuff, L):
+  print("".join(subset))
