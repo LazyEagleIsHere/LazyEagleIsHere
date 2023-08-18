@@ -1,0 +1,15 @@
+list_len, target = input().split()
+list_len = int(list_len)
+target = int(target)
+listnums = [int(x) for x in input().split()]
+smallest_diff = 1000000
+M = -1
+for num in listnums:
+  current_diff = abs(num - target)
+  if current_diff < smallest_diff:
+    smallest_diff = current_diff
+    M = num
+  elif current_diff == smallest_diff:
+    if num > M:
+      M = num
+print
