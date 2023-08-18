@@ -1,4 +1,0 @@
-let x = Scanf.scanf "%d" (fun a -> a);;
-let y = Scanf.scanf "%d" (fun b -> b);;
-print_int (x + y);
-print_newline ()
