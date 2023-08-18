@@ -1,0 +1,10 @@
+def josephus_survivor(n, k):
+  people = list(range(n))
+  index = 0
+  while len(people) > 1:
+    index = (index + k - 1) % len(people)
+    people.pop(index)
+  return people[0]
+n, k = map(int, input().split())
+survival_position = josephus_survivor(n, k)
+print(survival_position)
