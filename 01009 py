@@ -1,7 +1,10 @@
-while True:    
-  N = list(input())    
-  line = []    
-  for var in N:      
-    if ord(var) == 32 or 65 <= ord(var) <= 90 or 97 <= ord(var) <= 122:        
-      line.append(var)    
-  print("".join(line))
+try:  
+  while True:    
+    N = list(input())    
+    line = []    
+    for var in N:      
+      if ord(var) == 32 or 65 <= ord(var) <= 90 or 97 <= ord(var) <= 122:        
+        line.append(var)    
+    print("".join(line))
+except:  
+  pass
