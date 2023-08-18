@@ -1,0 +1,19 @@
+def find_minimum_coins(m, n, coin_values):
+  dp = [float('inf')] * (m + 1)
+  dp[0] = 0
+  for coin in coin_values:
+    for i in range(coin, m + 1):
+      dp[i] = min(dp[i], dp[i - coin] + 1)
+  coins_needed = dp[m]
+  coins_count = [0] * n
+  for i in range(n - 1, -1, -1):
+    while m >= coin_values[i] and dp[m] == dp[m - coin_values[i]] + 1:
+      m -= coin_values[i]
+      coins_count[i] += 1
+  return coins_needed, coins_count
+m, n = map(int, input().split())
+coin_values = [int(input()) for _ in range(n)]
+coins_needed, coins_count = find_minimum_coins(m, n, coin_values)
+print(coins_needed)
+for count in coins_count:
+  print(count)
