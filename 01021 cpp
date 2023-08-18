@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+  int nx, ny;
+  cin >> nx >> ny;
+  map<int, vector<int>> ab_dict, bc_dict;
+
+  for (int i = 0; i < nx; i++) {
+    int a, b;
+    cin >> a >> b;
+    ab_dict[a].push_back(b);
+  }
+
+  for (int i = 0; i < ny; i++) {
+    int c, b;
+    cin >> c >> b;
+    bc_dict[b].push_back(c);
+  }
+
+
+  for (auto var : ab_dict) {
+    for(int b : var.second){
+
+      for(int c : bc_dict[b]){
+        cout << var.first << ' ' << b << ' ' << c << '\n';
+      }
+
+      if(bc_dict[b].empty()) cout << var.first << ' ' << b << ' ' << "null" << '\n';
+
+    }
+    
+    if(var.second.empty()) cout << var.first << " null null\n";
+  }
+    return 0;
+}  
