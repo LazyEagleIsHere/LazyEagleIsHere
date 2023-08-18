@@ -1,0 +1,25 @@
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+int main() {
+  unordered_map<int, bool> up;
+  int n;
+  cin >> n;
+  for (int i = 0; i < n; i++) {
+    int down;
+    cin >> down;
+    try {
+      if (up[down]) {
+        cout << "out" << endl;
+        up[down] = false;
+      }else{
+        cout << "in" << endl;
+        up[down] = true;
+      }
+    }catch (...){
+      cout << "in" << endl;
+      up[down] = true;
+    }
+  }
+  return 0;
+}
