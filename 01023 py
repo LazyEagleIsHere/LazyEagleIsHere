@@ -12,4 +12,4 @@ for num in listnums:
   elif current_diff == smallest_diff:
     if num > M:
       M = num
-print
+print(M)
