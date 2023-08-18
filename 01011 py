@@ -1,0 +1,28 @@
+rect_num = int(input())
+rects = []
+output = []
+for _ in range(25):
+  blank = []
+  for _ in range(80):
+    blank.append(" ")
+  output.append(blank)
+for index in range(rect_num): 
+  try:
+    inputx = input()
+    font, x1, y1, x4, y4 = inputx.split()
+    x1, y1, x4, y4 = map(int, [x1, y1, x4, y4])
+  except Exception as e:
+    font = " "
+    x1, y1, x4, y4 = inputx.split()
+    x1, y1, x4, y4 = map(int, [x1, y1, x4, y4])
+  for index in range(x4-x1):
+    output[y1][x1+index] = font
+  for index in range(y4-y1):
+    output[y1+index][x1] = font
+    for index2 in range(x1+1, x4):
+      output[y1+index+1][index2] = " "
+    output[y1+index][x4] = font
+  for index in range(x4-x1+1):
+    output[y4][x1+index] = font
+for var in output:
+  print("".join(var))
