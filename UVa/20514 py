@@ -1,0 +1,20 @@
+def is_possible_order(N, permutation):
+  station = []
+  current_coach = 1
+  for coach in permutation:
+    if station and station[-1] == coach:
+      station.pop()
+    else:
+      while current_coach < coach:
+        station.append(current_coach)
+        current_coach += 1
+      if current_coach != coach:
+        return "No"
+      current_coach += 1
+  return "Yes"
+
+N, M = map(int, input().split())
+for _ in range(M):
+  permutation = list(map(int, input().split()))
+  result = is_possible_order(N, permutation)
+  print(result)
