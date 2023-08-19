@@ -1,0 +1,14 @@
+N = int(input())
+x = 1
+for line in range(N):
+  linex = []
+  for num in range(line + 1):
+    linex.append(str(x))
+    x += 1
+  print(" ".join(linex))
+for line in range(N - 1):
+  linex = []
+  for num in range(N - 1 - line):
+    linex.append(str(x))
+    x += 1
+  print(" ".join(linex))
