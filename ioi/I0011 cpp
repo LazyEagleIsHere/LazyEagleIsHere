@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int minimal_insertions() {
+  int length;
+  cin >> length;
+  string str;
+  cin >> str;
+  vector<int> prev_row(length, 0);
+  vector<int> curr_row(length, 0);
+  for (int i = length - 2; i >= 0; --i) {
+    for (int j = i + 1; j < length; ++j) {
+      if (str[i] == str[j]) {
+        curr_row[j] = prev_row[j - 1];
+      } else {
+        curr_row[j] = min(curr_row[j - 1], prev_row[j]) + 1;
+      }
+    }
+    prev_row.swap(curr_row);
+  }
+  int result = prev_row[length - 1];
+  cout << result << endl;
+  return 0;
+}
+int main() {
+  minimal_insertions();
+  return 0;
+}
