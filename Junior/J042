@@ -1,0 +1,10 @@
+n, cost = map(int, input().split())
+days = [float(x) for x in input().split()]
+currency = True
+for i in range(len(days)-1):
+  if days[i] > days[i+1]:
+    cost *= days[i]
+    cost /= days[i+1]
+
+cost = round(cost, 2)
+print("%.2f" % cost)
