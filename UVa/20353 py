@@ -1,0 +1,25 @@
+def is_palindrome(word):
+  start = 0
+  end = len(word) - 1
+  while start < end:
+    if word[start] != word[end]:
+      return False
+    start += 1
+    end -= 1
+  return True
+
+while True:
+  try:
+    word = input()
+    used_palindromes = set()
+    count = 0
+    for start in range(len(word)):
+      sub_sequence = ""
+      for to_add in range(start, len(word)):
+        sub_sequence += word[to_add]
+        if is_palindrome(sub_sequence) and sub_sequence not in used_palindromes:
+          count += 1
+          used_palindromes.add(sub_sequence)
+    print(f"The string '{word}' contains {count} palindromes.")
+  except EOFError:
+    break
