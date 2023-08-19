@@ -1,0 +1,30 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+using namespace std;
+#define FOR(i,a,b) for( int i=(a),_n=(b); i<=_n; ++i )
+#define clr(x,v) memset( x, v, sizeof(x) )
+#define N 1000005
+int n;
+int dp[N];
+int dpl;
+int f( int v, int l, int r ){
+	int mid;
+	while( l <= r ) {
+		mid = (l+r)/2;
+		if( dp[mid] >= v ) r = mid-1;
+		else l = mid+1;
+	}
+	return l;
+}
+int main( void ){
+	dp[1] = 1;
+	dp[2] = 3;
+	dpl = 2;
+	FOR( i, 3, 700000 ) 
+		dp[i] = dp[i-1]+f(i,1,dpl++);
+	while( scanf( "%d", &n )==1 && n ) {
+		printf( "%d\n", f(n,1,dpl) );
+	}
+	return 0;
+}
