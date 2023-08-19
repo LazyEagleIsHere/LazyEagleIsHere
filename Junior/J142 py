@@ -1,0 +1,39 @@
+n = int(input())
+smallest_bought = 0 
+largest_bought = 0
+smallest_given = 0 
+largest_given = 0
+bought = 0
+given = 0
+for _ in range(n):
+  try:
+    typei, stone = map(int, input().split())
+    if typei == 1:
+      bought += stone
+      smallest_bought += stone
+      largest_bought += stone
+    elif typei == 2:
+      given += stone
+      smallest_given += stone
+      largest_given += stone
+    elif typei == 3:
+      if smallest_given < stone:
+        smallest_given -= stone
+        m = 0 - smallest_given
+        smallest_given = 0
+        largest_bought -= m
+      else:
+        smallest_given -= stone
+      if smallest_bought <= stone:
+        smallest_bought -= stone
+        m = 0 - smallest_bought
+        smallest_bought = 0
+        largest_given -= m
+      else:
+        smallest_bought -= stone
+  except:
+    print(largest_bought, smallest_bought)
+
+
+
+
