@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+int main() {
+  int T;
+  cin >> T;
+  while (T--) {
+    int farmers;
+    cin >> farmers;
+    int premium = 0;
+    for (int i = 0; i < farmers; ++i) {
+      int size, ani, env;
+      cin >> size >> ani >> env;
+      premium += (size * env);
+    }
+    cout << premium << endl;
+  }
+  return 0;
+}
