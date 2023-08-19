@@ -1,0 +1,15 @@
+kiu1 = int(input())
+kiu2 = ["0", "1"]
+for _ in range(kiu1-1):
+  aston1 = []
+  for var in kiu2:
+    aston1.append("0" + var)
+  for index in range(len(kiu2)):
+    aston1.append("1" + kiu2[-(index+1)])
+  kiu2 = aston1
+yoyo1 = input()
+yoyo2 = kiu2.index(yoyo1)
+for var in kiu2[yoyo2:]:
+  print(var)
+for var in kiu2[:yoyo2]:
+  print(var)
