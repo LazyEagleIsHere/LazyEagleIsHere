@@ -1,0 +1,9 @@
+import Data.List
+main = do
+  [n, m] <- fmap (map read . words) getLine
+  putStrLn . unwords . map show . take n $ f n m
+zero = [1..] >>= (\x -> [x, -x]) 
+
+f n 0 | even n = zero
+f n m | even n = 0 : m : (zero \\ [m, -m])
+      | odd n = m : (zero \\ [m, -m])
