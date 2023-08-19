@@ -1,0 +1,4 @@
+B = int(input())
+P = int(input())
+M = int(input())
+print(pow(B, P, M))
