@@ -1,0 +1,11 @@
+import math
+n = int(input())
+x = n
+base = 1
+for _ in range(n):
+  r = []
+  for _ in range(n):
+    r.append(str(base))
+    base += 4
+  base -= 4
+  print(" ".join(r))
