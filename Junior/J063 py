@@ -1,0 +1,71 @@
+try:
+  rows = [[int(x) for x in input().split()] for _ in range(9)]
+  column_4 = [var[3] for var in rows]
+  column_5 = [var[4] for var in rows]
+  column_6 = [var[5] for var in rows]
+  row_4 = rows[3]
+  row_5 = rows[4]
+  row_6 = rows[5]
+  
+  solve = True
+  for i in range(1, 10):
+    valid_v = [True, True, True]
+    valid_h = [True, True, True]
+    if i in column_4:
+      valid_v[0] = False
+    if i in column_5:
+      valid_v[1] = False
+    if i in column_6:
+      valid_v[2] = False
+    if i in row_4:
+      valid_h[0] = False
+    if i in row_5:
+      valid_h[1] = False
+    if i in row_6:
+      valid_h[2] = False
+      
+    if valid_v.count(True) == 1 and valid_h.count(True) == 1:
+      v = 0
+      h = 0
+      for j in range(3):
+        if valid_v[j]:
+          v = j+3
+           
+      for j in range(3):
+        if valid_h[j]:
+          h = j+3
+      rows[h][v] = i
+    else:
+      solve = False
+      break
+
+  for var in rows:
+      all_in = [False, False, False, False, False, False, False, False, False]
+      for var2 in var:
+        if var2 == 0:
+          solve = False
+          break
+        else:
+          all_in[var2-1] = True
+      if False in all_in:
+        solve = False
+        break
+  for i in range(9):
+    all_in = [False, False, False, False, False, False, False, False, False] 
+    for j in range(9):
+      all_in[rows[j][i]-1] = True
+    if False in all_in:
+      solve = False
+      break
+      
+  if solve:
+    for var in rows:
+      for var2 in var:
+        print(var2, end=" ")
+      print("")
+  else:
+    print("No solution")
+    
+except Exception as e:
+  print(e)
+  
