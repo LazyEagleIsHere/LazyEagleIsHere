@@ -1,0 +1,13 @@
+import math
+light_num = int(input())
+x = []
+for _ in range(light_num):
+  b, c = input().split()
+  b = int(b)
+  c = int(c)
+  x.append(b + c)
+lcm = 1
+for i in x:
+  lcm = int(lcm * i / math.gcd(lcm, i))
+print(lcm)
+
