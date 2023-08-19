@@ -1,0 +1,25 @@
+def maximum_rectangle_area(N, heights):
+  stack = []
+  max_area = 0
+  def calculate_area(height, width):
+    return height * width
+  i = 0
+  while i < N:
+    if not stack or heights[i] >= heights[stack[-1]]:
+      stack.append(i)
+      i += 1
+    else:
+      top_index = stack.pop()
+      width = i if not stack else i - stack[-1] - 1
+      area = calculate_area(heights[top_index], width)
+      max_area = max(max_area, area)
+  while stack:
+    top_index = stack.pop()
+    width = i if not stack else N - stack[-1] - 1
+    area = calculate_area(heights[top_index], width)
+    max_area = max(max_area, area)
+  return max_area
+N = int(input())
+heights = list(map(int, input().split()))
+result = maximum_rectangle_area(N, heights)
+print(result)
