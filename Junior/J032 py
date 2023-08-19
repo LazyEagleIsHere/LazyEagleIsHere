@@ -1,0 +1,19 @@
+rect = [int(x) for x in input().split()]
+clients = []
+client_num, limit = map(int, input().split())
+for _ in range(client_num):
+  x, y, v = map(int, input().split())
+  clients.append([x, y, v])
+
+max_current = [0, 0]
+max_profit = 0
+for indx in range(rect[0]):
+  for indy in range(rect[1]):
+    provided = 0
+    for client in clients:
+      if abs(client[0] - indx) + abs(client[1] - indy) <= limit:
+        provided += client[2]
+    if provided > max_profit:
+      max_profit = provided
+      max_current = [indx, indy]
+print(max_current[0], max_current[1], max_profit)
