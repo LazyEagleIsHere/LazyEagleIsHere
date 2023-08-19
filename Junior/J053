@@ -1,0 +1,21 @@
+line, limit = map(int, input().split())
+words = []
+for _ in range(line):
+  lx = input().split()
+  for var in lx:
+    words.append(var)
+
+cnt = 0
+for var in words:
+  var_len = len(var)
+  if cnt > 0 and (cnt + 1 + var_len) > limit:
+    print("")
+    print(var, end="")
+    cnt = len(var)
+  else:
+    if limit > cnt > 0:
+      print(" ", end="")
+      cnt += 1
+    print(var, end="")
+    cnt += len(var)
+    
