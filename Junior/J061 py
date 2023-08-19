@@ -1,0 +1,11 @@
+from datetime import datetime, date, timedelta
+edate, emonth, eyear = input().split()
+days = int(input())
+months =["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+emonth = str(months.index(emonth) + 1)
+today = f"{eyear}-{emonth}-{edate}"
+myday = datetime.strptime(today, '%Y-%m-%d')
+new_day = str(myday + timedelta(days=days)).split()[0]
+eyear, emonth, edate = map(int, new_day.split("-"))
+emonth = months[emonth-1]
+print(edate, emonth, eyear)
