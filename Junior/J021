@@ -1,0 +1,20 @@
+months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+n = int(input())
+dates = []
+sumdate = []
+sorted_date = []
+for index in range(n):
+  d, m, y = input().split()
+  dates.append([d, m, y])
+  d = int(d.split(",")[0])
+  m = months.index(m) + 1
+  y = int(y)
+  sumdate.append([365 * y + 30 * m + d , index])
+while len(sumdate) > 0:
+  current = min([x[0] for x in sumdate])
+  for var in sumdate:
+    if var[0] == current:
+      sorted_date.append(dates[var[1]])
+      sumdate.remove(var)
+for var in sorted_date:
+  print(" ".join(var))
