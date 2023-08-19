@@ -1,0 +1,29 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
+using namespace std;
+
+int main() {
+  vector<char> alphabets;
+  string input;
+  cin >> input;
+  for (char c : input) {
+    alphabets.push_back(c);
+  }
+  sort(alphabets.begin(), alphabets.end());
+  vector<vector<char>> p;
+  do {
+    p.push_back(alphabets);
+  } while (next_permutation(alphabets.begin(), alphabets.end()));
+  set<vector<char>> new_p(p.begin(), p.end());
+  vector<vector<char>> new_p_sorted(new_p.begin(), new_p.end());
+  sort(new_p_sorted.begin(), new_p_sorted.end());
+  for (const auto& var : new_p_sorted) {
+    for (char c : var) {
+      cout << c;
+    }
+    cout << endl;
+  }
+  return 0;
+}
