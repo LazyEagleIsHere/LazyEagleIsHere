@@ -1,0 +1,18 @@
+def similarity(a, b):
+  diff = sum(abs(ord(x) - ord(y)) for x, y in zip(a, b))
+  if len(a) != len(b):
+    diff += sum(ord(c) for c in a[len(b):]) if len(a) > len(b) else sum(ord(c) for c in b[len(a):])
+  return diff
+
+def solve(s):
+  a, b, c = s.split()
+  d1, d2 = similarity(a, b), similarity(a, c)
+  if d1 < d2:
+    return b
+  elif d2 < d1:
+    return c
+  else:
+    return ' '.join(sorted([b, c]))
+
+s = input()
+print(solve(s))
