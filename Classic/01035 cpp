@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<vector<bool>> visited;
+vector<vector<int>> heights;
+int mx, my, h;
+
+void dfs(int x, int y) {
+  visited[x][y] = true;
+
+  if (x > 0 && !visited[x - 1][y] && abs(heights[x][y] - heights[x - 1][y]) <= h) {
+    dfs(x - 1, y);
+  }
+
+  if (x < mx - 1 && !visited[x + 1][y] && abs(heights[x][y] - heights[x + 1][y]) <= h) {
+    dfs(x + 1, y);
+  }
+
+  if (y > 0 && !visited[x][y - 1] && abs(heights[x][y] - heights[x][y - 1]) <= h) {
+    dfs(x, y - 1);
+  }
+
+  if (y < my - 1 && !visited[x][y + 1] && abs(heights[x][y] - heights[x][y + 1]) <= h) {
+    dfs(x, y + 1);
+  }
+}
+
+int main() {
+  cin >> mx >> my >> h;
+  int x, y;
+  cin >> x >> y;
+
+  heights.resize(mx, vector<int>(my));
+  visited.resize(mx, vector<bool>(my, false));
+
+  for (int i = 0; i < my; i++) {
+    for (int j = 0; j < mx; j++) {
+      cin >> heights[j][i];
+    }
+  }
+
+  dfs(x - 1, y - 1);
+
+  for (int i = 0; i < my; i++) {
+    for (int j = 0; j < mx; j++) {
+      cout << (visited[j][i] ? "1" : "0");
+    }
+    cout << endl;
+  }
+
+  return 0;
+}
