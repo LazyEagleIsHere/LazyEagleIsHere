@@ -1,0 +1,12 @@
+def move(n, start, inner, end):
+  if n == 1:
+    print(start, inner)
+    print(inner, end)
+  else:
+    move(n-1, start, inner, end)
+    print(start, inner)
+    move(n-1, end, inner, start)
+    print(inner, end)
+    move(n-1, start, inner, end)
+
+move(int(input()), 0, 1, 2)
