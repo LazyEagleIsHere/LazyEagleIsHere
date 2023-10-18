@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+bool between (int p1, int p2, int p3){
+  return (p1<=p3&&p3<=p2||p1>=p3&&p3>=p2);
+}
+
+int32_t main(){
+  int n;
+  cin >> n;
+  vector<pair<int, int>> s, t, ans;
+  for (int i=0; i<n; i++){
+    int a, b;
+    cin >> a >> b;
+    s.push_back({a, b});
+  }
+  
+  cin >> n;
+  for (int i=0; i<n; i++){
+    int a, b;
+    cin >> a >> b;
+    t.push_back({a, b});
+  }
+
+  sort(s.begin(), s.end());
+  sort(t.begin(), t.end());
+  int i=0, j=0;
+  while (i<s.size()&&j<t.size()){
+    int a=s[i].second, b=t[j].second;
+    if (between(s[i].first, s[i].second, t[j].first)||(between(t[j].first, t[j].second, s[i].first))){
+      if (ans.size()>0&&ans[ans.size()-1].second == max(s[i].first, t[j].first)){
+        ans[ans.size()-1].second = min(s[i].second, t[j].second);
+      }
+      else{
+        ans.push_back({max(s[i].first, t[j].first), min(s[i].second, t[j].second)});
+      }
+    }
+    if (a==b) {i++; j++;}
+    else (a<b) ? i++ : j++;
+  }
+  cout << ans.size() << "\n";
+  for (auto p:ans){
+    cout << p.first << " " << p.second << "\n";
+  }
+}
