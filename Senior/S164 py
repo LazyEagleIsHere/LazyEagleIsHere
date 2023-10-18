@@ -1,0 +1,19 @@
+try:
+  n, k = map(int, input().split())
+  dish = [int(x) for x in input().split()]
+  h = 0
+  for index in range(k):
+    h += dish[index] * (index + 1)
+  maxh = h
+  clist_sum = sum(dish[0:k])
+  for index in range(1, n-k+1):
+    h -= clist_sum
+    h += dish[index+k-1] * k
+    clist_sum -= dish[index-1]
+    clist_sum += dish[index+k-1]
+    if h > maxh:
+      maxh = h
+  
+  print(maxh)
+except Exception as e:
+  print(e)
