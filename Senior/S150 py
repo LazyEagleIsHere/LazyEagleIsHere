@@ -1,0 +1,9 @@
+n = int(input())
+for line in range(n):
+  linex = []
+  n = 1
+  for _ in range(line + 1):
+    linex.insert(0, n)
+    n += line
+  linex = [str(x) for x in linex]
+  print(" ".join(linex))
