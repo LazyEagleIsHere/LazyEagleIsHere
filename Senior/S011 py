@@ -1,0 +1,29 @@
+t = int(input())
+classes = {}
+end_time = []
+for i in range(t):
+  start, end = map(int, input().split())
+  try:
+    classes[end].append([start, i])
+  except:
+    classes[end] = [[start, i]]
+  end_time.append(end)
+end_time = list(set(end_time))
+end_time.sort()
+i = 1
+acts = []
+acts.append(classes[end_time[0]][0][1])
+last_time = end_time[0]
+end_len = len(end_time)
+while i < end_len:
+  dataset = classes[end_time[i]]
+  for var in dataset:
+    if var[0] >= last_time:
+      last_time = end_time[i]
+      acts.append(var[1])
+  i += 1
+
+print(len(acts))
+acts.sort()
+for var in acts:
+  print(var+1)
