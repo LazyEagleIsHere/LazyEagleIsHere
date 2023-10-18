@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long diff[1001];
+int main() {
+  int n;
+  cin >> n;
+  while (n--){
+    long long a, b, c;
+    cin >> a >> b >> c;
+    diff[b-1] += a;
+    diff[c] -= a;
+  }
+  long long max_val=diff[0];
+  for (int i=1; i<1001; i++){
+    diff[i] += diff[i-1];
+    max_val = max(max_val, diff[i]);
+  }
+  cout << max_val;
+}
