@@ -1,0 +1,58 @@
+// line 43 - 47 is the major issue
+#include <bits/stdc++.h>
+using namespace std;
+struct student{
+    string name;
+    string gender;
+    string rating;
+    int elo = 0;
+};
+bool cmp(struct student& s1, struct student& s2){
+    return s1.elo > s2.elo;
+}
+bool cmp_al(struct student& s1, struct student& s2){
+    return s1.name < s2.name;
+}
+
+int main(){
+    int t;
+    vector<struct student> vec;
+    cin >> t;
+    cin.ignore();
+    while(t--){
+        string str;
+        struct student stu;
+        getline(cin, str);
+        for(int i=0;i<str.length();i++){
+            if(str[i] == ','){
+                stu.name = str.substr(0, i);
+                stu.gender = str.substr(i+1, 1);
+                stu.rating = str.substr(str.length()-3, 3);
+                if(stu.rating.find(',') == string::npos){
+                    stu.elo = stoi(stu.rating);
+                } 
+                else{
+                    stu.rating.erase(stu.rating.begin(), stu.rating.begin()+stu.rating.find(',')+1);
+                    stu.elo = stoi(stu.rating);
+                }
+                vec.push_back(stu);
+                break;
+            }
+        }
+    }
+    for(int i=0;i<vec.size();i++){
+        if(vec[i].gender == "F") {
+          (vec[i].elo)*=1.1;
+        }
+    }
+    sort(vec.begin(), vec.end(), cmp);
+    for (int i = 0; i < 2; i++) {
+        if(i > 0 && vec[i].gender == "F" && abs(vec[i-1].elo-vec[i].elo) <= (0.1*vec[i].elo)){
+            swap(vec[i-1], vec[i]);
+        }
+    }
+
+    sort(vec.begin(), vec.begin()+3, cmp_al);
+    cout << vec[0].name << endl << vec[1].name << endl << vec[2].name << endl;
+    return 0;
+}
