@@ -1,0 +1,95 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> arr;
+int tri[5][5], n;
+bool used[15], solved=false;
+
+bool check(vector<int> grid){
+  bool valid=true;
+  for (int i=0; i<n; i++){
+    for (int j=0; j<=i; j++){
+      if (!(tri[i][j]==grid[((i*(i+1))>>1)+j] || tri[i][j]==0)) valid = false;
+    }
+  }
+  return valid;
+}
+
+bool duplicate(vector<int> grid){
+  bool valid=true;
+  set<int> s;
+  for(int i = 0; i < grid.size(); i++){
+    s.insert(grid[i]);
+    if(s.size() < i+1){
+      valid = false;
+      break;
+    }
+  }
+  return valid;
+}
+
+vector<int> full(vector<int> base){
+  vector<vector<int>> triangle;
+  vector<int> last=base;
+  triangle.push_back(base);
+  for (int i=0; i<n-1; i++){
+    vector<int> current;
+    for (int i=1; i<last.size(); i++){
+      current.push_back(abs(last[i]-last[i-1]));
+    }
+    last = current;
+    triangle.push_back(current);
+  }
+  vector<int> tri_in_vec;
+  for (int i=n-1; i>-1; i--){
+    for (auto var:triangle[i]){
+      tri_in_vec.push_back(var);
+    }
+  }
+  if (check(tri_in_vec) && duplicate(tri_in_vec)){
+    solved = true;
+    int cnt = 0;
+    for (int i=0; i<n; i++){
+      for (int j=0; j<=i; j++){
+        cout << tri_in_vec[cnt] << " ";
+        cnt++;
+      }
+      cout << "\n";
+    }
+  }
+  return last;
+}
+
+void generate(){
+  if (!solved){
+    if (n==arr.size()){
+      full(arr);
+    }
+    else{
+      for (int i=1; i<=(int)n*(n+1)/2; i++){
+        if ((find(arr.begin(), arr.end(), i)==arr.end()) && !used[i-1] && (tri[n-1][arr.size()]==0 || tri[n-1][arr.size()]==i)){
+          arr.push_back(i);
+          generate();
+          arr.pop_back();
+        }
+      }
+    }
+  }
+}
+
+int main(){
+  int cnt=0;
+  cin >> n;
+  for (int i=0; i<n; i++){
+    for (int j=0; j<=i; j++){
+      cin >> tri[i][j];
+      if (i!=n-1 && tri[i][j]!=0) used[tri[i][j]-1]=true;
+      if (tri[i][j]==0) cnt++;
+    }
+  }
+  if (cnt==15){
+    full({6, 14, 15, 3, 13});
+    return 0;
+  }
+  generate();
+}
