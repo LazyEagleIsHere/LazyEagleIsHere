@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> g(100, vector<int>());
+stack<int> t_order;
+bool visited[100], loop=false;
+
+void topo(int node){
+  if (!visited[node]){
+    visited[node] = true;
+    for (auto next_node:g[node]){
+      topo(next_node);
+    }
+    t_order.push(node);
+  }
+  else{
+    loop=true;
+  }
+}
+
+int main() {
+  int n;
+  cin >> n;
+  for(int i=0; i<n; i++){
+    int t;
+    cin >> t;
+    for (int j=0; j<t; j++){
+      int k;
+      cin >> k;
+      g[i].push_back(k-1);
+    }
+  }
+  for (int i=0; i<n; i++){
+    if (!visited[i]){
+      topo(i);
+    }
+  }
+  vector<int> data;
+  int loc[n];
+  for (int i=0; i<n; i++){
+    data.push_back(t_order.top());
+    loc[data[i]] = i;
+    t_order.pop();
+  }
+  for (int i=0; i<n; i++){
+    for (auto v:g[i]){
+      if (loc[i]>loc[v]){
+        cout << "No Solution";
+        return 0;
+      }
+    }
+  }
+
+  for (auto ans:data){
+    cout << ans+1 << " ";
+  }
+}
