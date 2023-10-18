@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+  int n, k;
+  cin >> n >> k;
+  double sales[n], sliding=0, mad=0;
+  for (int i=0; i<n; i++) cin >> sales[i];
+  for (int i=0; i<k; i++) sliding += sales[i];
+  for (int i=k; i<n; i++){
+    mad += abs(sales[i]-sliding/k);
+    sliding += sales[i];
+    sliding -= sales[i-k];
+  }
+  mad /= (n-k);
+  cout << fixed << setprecision(2) << mad;
+}
