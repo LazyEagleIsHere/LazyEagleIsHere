@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+int32_t main(){
+  int n, m, s1=0, s2=2147483647, cnt=0;
+  cin >> n >> m;
+  while(n--){
+    int t;
+    string cmd;
+    cin >> cmd >> t;
+    if (cmd=="AND"){
+      s1&=t; s2&=t;
+    }else if (cmd=="OR"){
+      s1|=t; s2|=t;
+    }else{
+      s1^=t; s2^=t;
+    }
+  }
+  for (int i=31; i>-1; i--){
+    if ((1&(s1>>i))>=(1&(s2>>i))){
+      cnt += ((1&(s1>>i)) << i);
+    }
+    else if ((1<<i)<=m){
+      cnt += ((1&(s2>>i)) << i);
+      m -= ((1&(s2>>i)) << i);
+    }
+  }
+  cout << cnt;
+}
