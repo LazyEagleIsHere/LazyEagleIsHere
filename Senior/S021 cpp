@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+  int n, m;
+  cin >> n >> m;
+  int arr1[n];
+  vector<pair<int, int>> lines;
+  for (int i=0; i<n; i++){
+    arr1[i] = i+1;
+  }
+  for (int i=0; i<m; i++){
+    int a, b;
+    cin >> a >> b;
+    lines.push_back({b, a-1});
+  }
+  sort(lines.begin(), lines.end());
+  for (auto var:lines){
+    swap(arr1[var.second], arr1[var.second+1]);
+  }
+  for (int i=0; i<n; i++){
+    cout << arr1[i] << " ";
+  }
+  cout << "\n";
+  
+  cin >> n;
+  int org[n], tar[n], pos[n];
+  for (int i=0; i<n; i++){
+    org[i] = i;
+    cin >> tar[i];
+  }
+  for (int i=0; i<n; i++){
+    pos[tar[i]-1] = i;
+  }
+
+  vector<pair<int, int>> actions;
+  int i, j, cnt=1;
+  bool swapped;
+  for (i=0; i<n-1; i++) {
+    swapped = false;
+    for (j=0; j< n-i-1; j++) {
+      if (pos[org[j]] > pos[org[j + 1]]) {
+        swap(org[j], org[j + 1]);
+        actions.push_back({j+1, cnt});
+        cnt++;
+        swapped = true;
+      }
+    }
+    if (swapped == false)
+      break;
+  }
+  cout << actions.size() << "\n";
+  for (auto var:actions){
+    cout << var.first << " " << var.second << "\n";
+  }
+}
