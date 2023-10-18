@@ -1,0 +1,12 @@
+import math
+n = int(input())
+x = n
+base = n * int(n * (n+1)/2)
+for _ in range(n):
+  r = []
+  for _ in range(n):
+    r.append(str(base))
+    base -= x
+  x-= 1
+  
+  print(" ".join(r))
