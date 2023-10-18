@@ -1,0 +1,25 @@
+n = int(input())
+words = {}
+for _ in range(n):
+  a = input()
+  b = input()
+  words[a] = b
+
+try:
+  m = int(input())
+  for _ in range(m):
+    s = input().split()
+    cvt = ["" for _ in range(26)]
+    pattA = input()
+    pattB = input()
+    for i in range(len(pattA)):
+      if s[i] in words.keys():
+        x = words[s[i]]
+      else:
+        x = s[i]
+      cvt[ord(pattA[i])-65] = x
+    for var in pattB:
+      print(cvt[ord(var)-65], end=" ")
+    print()
+except Exception as e:
+  print(e)
