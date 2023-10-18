@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct triple{
+  int first;
+  int second;
+  int third;
+};
+
+int main(){
+  string s;
+  vector<triple> loc;
+  bool open = false;
+  vector<string> out;
+  int cnt=0;
+  while (getline(cin, s)){
+    if (s.length()==0){
+      int j=loc.size()-1;
+        while (j>=0&&loc[j].third!=1){
+          loc[j].third=2;
+          j--;
+        }
+      open = false;
+    }
+    for (int i=0; i<s.length(); i++){
+      if (s[i]=='"'&&(i==0||s[i-1]!=92)){
+        loc.push_back({cnt, i, open});
+        open = !(open);
+      }
+      else if (s[i]==92&&i+3<s.length()&&s[i+1]=='p'&&s[i+2]=='a'&&s[i+3]=='r'){
+        int j=loc.size()-1;
+        while (j>=0&&loc[j].third!=1){
+          loc[j].third=2;
+          j--;
+        }
+        open = false;
+      }
+    }
+    cnt++;
+    out.push_back(s);
+  }
+  int j=loc.size()-1;
+  while (j>=0&&loc[j].third!=1){
+    loc[j].third=2;
+    j--;
+  }
+  open = false;
+  int k=0;
+  for (int i=0; i<out.size(); i++){
+    for (int j=0; j<out[i].length(); j++){
+      if (k<loc.size()&&i==loc[k].first&&j==loc[k].second){
+        if (loc[k].third==0) cout << "``";
+        else if (loc[k].third==1) cout << "''";
+        k++;
+      }
+      else cout << out[i][j];
+    }
+    cout << "\n";
+  }
+}
