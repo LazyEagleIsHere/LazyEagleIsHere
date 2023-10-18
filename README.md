@@ -1,1 +1,1 @@
-I don't put dse and noip tasks here as all of you can solve
+I don't put dse tasks here as all of you can solve
