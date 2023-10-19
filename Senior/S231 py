@@ -4,15 +4,12 @@ def compare(x, y):
   elif len(x)>len(y):
     return True
   return False
-  
 a = input()
 b = input()
 min_a = a.replace("10", "A")
 min_b = b.replace("10", "A")
-
 x = compare(a, min_b)
 y = compare(b, min_a)
-
 if x==y:
   print("?")
 elif x and not y:
