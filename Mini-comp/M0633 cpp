@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool compare(string &a, string &b){
+  return a+b>b+a;
+}
+int main(){
+  int n;
+  cin >> n;
+  vector<string> s;
+  for (int i=0; i<n; i++){
+    string num;
+    cin >> num;
+    s.push_back(num);
+  }
+  sort(s.begin(), s.end(), compare);
+  string ans;
+  for (int i=0; i<n; i++) ans += s[i];
+  cout << ans;
+}
