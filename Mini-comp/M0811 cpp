@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+  priority_queue <int, vector<int>,greater<int>> min_shelf, lazy1;
+  priority_queue <int> max_shelf, lazy2;
+  int acts, x, i, y;
+  cin >> acts;
+  for (i=0; i<acts; i++){
+    cin >> x;
+    if (x==1){
+      cin >> y;
+      min_shelf.push(y);
+      max_shelf.push(y);
+    }
+    else if (x==2) {
+      while (!lazy1.empty()&&lazy1.top()==min_shelf.top()){
+        lazy1.pop();
+        min_shelf.pop();
+      }
+      while (!lazy2.empty()&&lazy2.top()==max_shelf.top()){
+        lazy2.pop();
+        max_shelf.pop();
+      }
+      if (min_shelf.empty()||max_shelf.empty()) cout << "-1\n";
+       else cout << min_shelf.top() << "\n";
+    }
+    else if (x==3){ 
+      while (!lazy1.empty()&&lazy1.top()==min_shelf.top()){
+        lazy1.pop();
+        min_shelf.pop();
+      }
+      while (!lazy2.empty()&&lazy2.top()==max_shelf.top()){
+        lazy2.pop();
+        max_shelf.pop();
+      }
+      if (min_shelf.empty()||max_shelf.empty()) cout << "-1\n";
+      else cout << max_shelf.top() << "\n";
+    }
+    else if (x==4){
+      lazy2.push(min_shelf.top());
+      min_shelf.pop();
+      while (!lazy2.empty()&&lazy2.top()==max_shelf.top()){
+        lazy2.pop();
+        max_shelf.pop();
+      }
+    }
+    else if (x==5){
+      lazy1.push(max_shelf.top());
+      max_shelf.pop();
+      while (!lazy1.empty()&&lazy1.top()==min_shelf.top()){
+        lazy1.pop();
+        min_shelf.pop();
+      }
+    }
+  }
+}
