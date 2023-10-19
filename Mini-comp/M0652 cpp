@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+int amount[2000];
+int main() {
+  int n, m, types=0, i=0;
+  pair<int, int> best_ans={0, 1e9};
+  cin >> n >> m;
+  int arr[n];
+  for (int j=1; j<=n; j++){
+    cin >> arr[j-1];
+    if (amount[arr[j-1]-1]==0) types++;
+    amount[arr[j-1]-1]++;
+    if (types>=m){
+      while (amount[arr[i]-1]>1){
+        amount[arr[i]-1]--;
+        i++;
+      }
+      if (j-i+1<best_ans.second-best_ans.first) best_ans = {i, j};
+    }
+  }
+  cout << best_ans.first+1 << " " << best_ans.second;
+}
