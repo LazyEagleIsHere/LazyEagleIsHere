@@ -1,0 +1,24 @@
+//this code needs luck, otherwise you cannot get AC
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+  long long n;
+  cin >> n;
+  int e = 0, ee = 0;
+  int q, j = 0;
+  for (int i = 1; i <= n; ++i){
+    if (i % 10 == 0){
+      q = i;
+      j = 0;
+      while (q % 10 == 0 && q > 0){
+        q /= 10;
+        ++j;
+      }
+      e -= j*9;
+    }
+    e++;
+    if (e % 7 == 0) ++ee;
+  }
+  cout << ee;
+  return 0;
+}
